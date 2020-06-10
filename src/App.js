@@ -8,8 +8,17 @@ import youtube from "./api/youtube";
 
 class App extends React.Component {
   state = {
+    topVideos: [],
     videos: [],
     selectedVideo: null,
+  };
+
+  componentDidMount() {
+    this.handleMount();
+  }
+
+  handleMount = () => {
+    this.handleSubmit("trending");
   };
 
   handleSubmit = async (searchTxt) => {
@@ -28,10 +37,21 @@ class App extends React.Component {
     });
   };
 
+  onVideoSelect = (video) => {
+    this.setState({
+      selectedVideo: video,
+    });
+  };
+
   render() {
     const { selectedVideo, videos } = this.state;
     return (
-      <Grid justify="center" container spacing={10}>
+      <Grid
+        justify="center"
+        container
+        spacing={12}
+        style={{ width: "98vw", margin: "auto", maxWidth: "1200px" }}
+      >
         <Grid item xs={12}>
           <Grid container spacing={10}>
             <Grid item xs={12}>
@@ -41,7 +61,7 @@ class App extends React.Component {
               <VideoDetail video={selectedVideo} />
             </Grid>
             <Grid item xs={4}>
-              <VideoList videos={videos} />
+              <VideoList videos={videos} onVideoSelect={this.onVideoSelect} />
             </Grid>
           </Grid>
         </Grid>

@@ -8,7 +8,7 @@ const VideoDetail = ({ video }) => {
   const videoSrc = `https://www.youtube.com/embed/${video.id.videoId}`;
   return (
     <React.Fragment>
-      <Paper elevation={6} style={{ height: "70%" }}>
+      <Paper elevation={4} style={{ height: "30%" }}>
         <iframe
           frameBorder="0"
           height="100%"
@@ -17,14 +17,14 @@ const VideoDetail = ({ video }) => {
           src={videoSrc}
         />
       </Paper>
-      <Paper elevation={6} style={{ padding: "15px" }}>
-        <Typography variant="h4">
+      <Paper elevation={4} style={{ padding: "10px" }}>
+        <Typography variant="h6">
           {video.snippet.title} - {video.snippet.channelTitle}
         </Typography>
-        <Typography variant="subtitle1">
+        <Typography variant="subtitle2">
           {video.snippet.channelTitle}
         </Typography>
-        <Typography variant="subtitle2">{video.snippet.description}</Typography>
+        <Typography variant="subtitle3">{video.snippet.description}</Typography>
       </Paper>
     </React.Fragment>
   );
